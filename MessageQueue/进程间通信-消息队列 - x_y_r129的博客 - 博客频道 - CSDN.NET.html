@@ -1,0 +1,1080 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+     
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    
+<head>   
+   
+
+    <script type="text/javascript" src="http://c.csdnimg.cn/pubfooter/js/tracking.js" charset="utf-8"></script>  
+
+    <script type="text/javascript">
+        var protocol = window.location.protocol;
+        document.write('<script type="text/javascript" src="' + protocol + '//csdnimg.cn/pubfooter/js/repoAddr2.js?v=' + Math.random() + '"></' + 'script>');
+    </script>
+
+  
+ <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+
+    <title>进程间通信-消息队列 - x_y_r129的博客
+        - 博客频道 - CSDN.NET</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="用ant打包可运行的jar文件（将第三方jar包放进你自己的jar包）Jar文件的运行方式直接双击或者Java –jar xxxx.jar要能直接运行必须在jar包下的MANIFEST.MF文件中添加入口类，就是带Main函数的。例如：Main-Class: com.safx.processor.Starter在MANIFEST.MF文件中添加了Main-Class这个属性，在" />
+    <script src="http://static.blog.csdn.net/scripts/jquery.js" type="text/javascript"></script>
+      <script type="text/javascript" src="http://static.blog.csdn.net/scripts/jquery-version.js"></script>
+    <script type="text/javascript" src="http://static.blog.csdn.net/scripts/ad.js?v=1.1"></script>
+        <!--new top-->
+               <link rel="stylesheet" href="http://c.csdnimg.cn/public/common/toolbar/css/index.css">        <!--new top-->
+    
+      <!-- ad begin -->
+         <script language="javascript" type="text/javascript" src="http://ads.csdn.net/js/tracking.js"></script>
+    <!-- ad end-->
+
+    <link rel="Stylesheet" type="text/css" href="http://static.blog.csdn.net/skin/light_blue/css/style.css?v=1.1" />
+    <link id="RSSLink" title="RSS" type="application/rss+xml" rel="alternate" href="/x_y_r129/rss/list" />
+    <link rel="shortcut icon" href="http://c.csdnimg.cn/public/favicon.ico" />
+    <link type="text/css" rel="stylesheet" href="http://static.blog.csdn.net/scripts/SyntaxHighlighter/styles/default.css" />
+ 
+
+
+</head>
+<body>
+    <!-- 广告位开始 -->
+        <ins data-revive-zoneid="149" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57"></ins>
+    <!-- 广告位结束 -->
+
+    
+   
+      <!--new top-->
+    <script id="toolbar-tpl-scriptId" fixed="true" prod="blog" skin="black" src="http://c.csdnimg.cn/public/common/toolbar/js/html.js" type="text/javascript"></script>
+     <!--new top-->
+    <div id="container">
+        <div id="header">
+    <div class="header">
+        <div id="blog_title">
+            <h2>
+                <a href="http://blog.csdn.net/x_y_r129">x_y_r129的博客</a></h2>
+            <h3></h3>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+</div>
+<div id="navigator">
+    <div class="navigator_bg">
+    </div>
+    <div class="navigator">
+        <ul>
+            
+                <li id="btnContents"><a href="http://blog.csdn.net/x_y_r129?viewmode=contents"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_mulu'])">
+                    <img src="http://static.blog.csdn.net/images/ico_list.gif">目录视图</span></a></li>
+                <li id="btnView"><a href="http://blog.csdn.net/x_y_r129?viewmode=list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_zhaiyao'])">
+                    <img src="http://static.blog.csdn.net/images/ico_summary.gif">摘要视图</span></a></li>
+                <li id="btnRss"><a href="http://blog.csdn.net/x_y_r129/rss/list"><span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_RSS'])">
+                    <img src="http://static.blog.csdn.net/images/ico_rss.gif">订阅</span></a></li>                
+            
+
+                    <li id="btnManage"><a href="http://write.blog.csdn.net"><span>
+                        <img src="http://static.blog.csdn.net/images/ico_set.gif">管理博客</span></a></li>
+                    <li id="btnWrite"><a href="http://write.blog.csdn.net/postedit"><span>
+                    <img src="http://static.blog.csdn.net/images/ico_write.gif">写新文章</span></a></li>
+            </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    var username = "x_y_r129";
+    var _blogger = username;
+    var blog_address = "http://blog.csdn.net/x_y_r129";
+    var static_host = "http://static.blog.csdn.net";
+    var currentUserName = "x_y_r129";  
+</script>
+
+        <div id="body">
+            <div id="main">
+                <div class="main">
+                        <div class="ad_class">
+<div class="notice tracking-ad" data-mod='popu_3' > 
+
+
+<a href="http://bbs.csdn.net/topics/391976908">
+<font color=blue>【CSDN会员专属福利】OpenStack Days China 大会门票，先到先得</font></a>
+&nbsp;&nbsp;&nbsp;
+<a href="http://lib.csdn.net/base/python">
+<font color=red>【收藏】Python知识图谱
+</font></a>
+&nbsp;&nbsp;&nbsp;
+<a href="http://geek.csdn.net/news/detail/86516">
+<font color=blue>我们为什么选择Java
+</font></a>
+&nbsp;&nbsp;&nbsp;
+
+</font></a>
+</div>                        </div>
+                        
+
+
+
+<!-- 广告位开始 -->
+<ins data-revive-zoneid="72" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57"></ins>
+<!-- 广告位结束 -->
+
+  
+<link href="http://static.blog.csdn.net/css/comment1.css" type="text/css" rel="stylesheet" />
+<link href="http://static.blog.csdn.net/css/style1.css" type="text/css" rel="stylesheet" />
+<script language='JavaScript' type='text/javascript' src='http://download.csdn.net/js/jquery.cookie.js'></script>
+<script type="text/javascript" src="http://c.csdnimg.cn/rabbit/search-service/main.js"></script>
+<link rel="stylesheet" href="http://static.blog.csdn.net/public/res-min/markdown_views.css?v=1.0" />
+<link rel="stylesheet" href="http://static.blog.csdn.net/css/category.css?v=1.0" />
+<script type="text/javascript" src="http://static.blog.csdn.net/public/res/bower-libs/MathJax/MathJax.js?config=TeX-AMS_HTML"></script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/web-storage-cache.min.js"></script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/replace.min.js"></script>
+
+
+
+
+  <script type="text/ecmascript">
+      window.quickReplyflag = true;
+           
+            var isBole = false;
+            
+          
+    </script>
+<div id="article_details" class="details">
+    <div class="article_title">   
+         <span class="ico ico_type_Original"></span>
+
+
+    <h1>
+        <span class="link_title"><a href="/x_y_r129/article/details/51837963">
+        进程间通信-消息队列            
+        </a></span>
+    </h1>
+</div>
+
+   
+
+        <div class="article_manage clearfix">
+        <div class="article_r">
+            <span class="link_postdate">2016-07-06 13:12</span>
+            <span class="link_view" title="阅读次数">9人阅读</span>
+            <span class="link_comments" title="评论次数"> <a href="#comments" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_pinglun'])">评论</a>(0)</span>
+            <span class="link_collect tracking-ad" data-mod="popu_171"> <a href="javascript:void(0);" onclick="javascript:collectArticle('进程间通信-消息队列','51837963');return false;" title="收藏">收藏</a></span>
+
+                <span class="link_edit"><a href="http://write.blog.csdn.net/postedit/51837963" title="编辑">编辑</a></span>
+                <span class="link_delete"><a href="javascript:void(0);" onclick="javascript:deleteArticle(51837963);return false;" title="删除">删除</a></span>
+        </div>
+    </div>
+    <div class="embody"  style="display:none" id="embody">
+        <span class="embody_t">本文章已收录于：</span>
+        <div class="embody_c" id="lib" value="{&quot;err&quot;:0,&quot;msg&quot;:&quot;ok&quot;,&quot;data&quot;:[]}"></div>
+    </div>
+    <style type="text/css">        
+            .embody{
+                padding:10px 10px 10px;
+                margin:0 -20px;
+                border-bottom:solid 1px #ededed;                
+            }
+            .embody_b{
+                margin:0 ;
+                padding:10px 0;
+            }
+            .embody .embody_t,.embody .embody_c{
+                display: inline-block;
+                margin-right:10px;
+            }
+            .embody_t{
+                font-size: 12px;
+                color:#999;
+            }
+            .embody_c{
+                font-size: 12px;
+            }
+            .embody_c img,.embody_c em{
+                display: inline-block;
+                vertical-align: middle;               
+            }
+             .embody_c img{               
+                width:30px;
+                height:30px;
+            }
+            .embody_c em{
+                margin: 0 20px 0 10px;
+                color:#333;
+                font-style: normal;
+            }
+    </style>
+    <script  type="text/javascript">
+        $(function () {
+            try
+            {
+                var lib = eval("("+$("#lib").attr("value")+")");
+                var html = "";
+                if (lib.err == 0) {
+                    $.each(lib.data, function (i) {
+                        var obj = lib.data[i];
+                        //html += '<img src="' + obj.logo + '"/>' + obj.name + "&nbsp;&nbsp;";
+                        html += ' <a href="' + obj.url + '" target="_blank">';
+                        html += ' <img src="' + obj.logo + '">';
+                        html += ' <em><b>' + obj.name + '</b></em>';
+                        html += ' </a>';
+                    });
+                    if (html != "") {
+                        setTimeout(function () {
+                            $("#lib").html(html);                      
+                            $("#embody").show();
+                        }, 100);
+                    }
+                }      
+            } catch (err)
+            { }
+            
+        });
+    </script>
+      <div class="category clearfix">
+        <div class="category_l">
+           <img src="http://static.blog.csdn.net/images/category_icon.jpg">
+            <span>分类：</span>
+        </div>
+        <div class="category_r">
+                    <label  onclick="GetCategoryArticles('5773349','x_y_r129','top','51837963');">
+                        <span onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_fenlei']);">linux<em>（6）</em></span>
+                      <img class="arrow-down" src="http://static.blog.csdn.net/images/arrow_triangle _down.jpg" style="display:inline;">
+                      <img class="arrow-up" src="http://static.blog.csdn.net/images/arrow_triangle_up.jpg" style="display:none;">
+                        <div class="subItem">
+                            <div class="subItem_t"><a  href="http://blog.csdn.net/x_y_r129/article/category/5773349"  target="_blank">作者同类文章</a><i class="J_close">X</i></div>
+                            <ul class="subItem_l" id="top_5773349">                            
+                            </ul>
+                        </div>
+                    </label>                    
+        </div>
+    </div>
+    <script   type="text/javascript" src="http://static.blog.csdn.net/scripts/category.js"></script>  
+        <div   class="bog_copyright">         
+            <p  class="copyright_p" >版权声明：本文为博主原创文章，未经博主允许不得转载。</p>
+        </div>
+
+  
+
+  
+  
+     
+
+<div id="article_content" class="article_content">
+        <div class="markdown_views"><p><strong>一、What?</strong> <br>
+           消息队列做为进程间通信的一种方式，提供了一种从一个进程向另一个进程发送一个<strong>数据块</strong>（接收一部分无意义）的方法。  每个数据块都被认为含有一个类型，接收进程可以独立地接收含有不同类型的数据结构。我们可以通过发送消息来避免命名管道的同步和阻塞问题。但是消息队列与命名管道一样，每个消息都有一个最大长度的限制（MSGMAX），每个消息队列的总字节数有上限（MSGMNB），系统上消息队列的总数也有上限（MSGMNI）。</p>
+
+<p><img src="http://img.blog.csdn.net/20160705223601061" alt="这里写图片描述" title=""></p>
+
+<p>消息队列是在数据传输传输过程中保存数据的容器，消息被发送到队列中，消息队列充当中间人，将消息从源中继到目标。</p>
+
+<p>消息队列特点： <br>
+ –接口复杂； <br>
+ –面向数据块服务； <br>
+–系统V消息队列是<strong>随内核持续</strong>的；只有在内核重启或者显示删除一个消息队列时，该消息队列才会真正被删除。因此系统中记录消息队列的数据结构（struct ipc_ids msg_ids）位于内核中，系统中的所有消息队列都可以在结构msg_ids中找到访问入口。</p>
+
+<p>IPC几种持续 <br>
+（1）随进程持续：IPC一直存在到打开IPC对象的最后一个进程关闭该对象为止。如管道和有名管道； <br>
+（2）随内核持续：IPC一直持续到内核重新自举或者显示删除该对象为止。如消息队列、信号灯以及共享内存等； <br>
+（3）随文件系统持续：IPC一直持续到显示删除该对象为止。</p>
+
+<p><strong>二、Why?</strong></p>
+
+<p><img src="http://img.blog.csdn.net/20160706110544284" alt="这里写图片描述" title=""> <br>
+（1）保证消息的传递。 <br>
+如果发送消息时接收者不可用，消息队列会保留消息，直到成功地传递它；</p>
+
+<p>（2）提供异步的通信协议。 <br>
+消息的发送者将消息发送到消息队列后可以立即返回，不用等待接收者的响应，消息会被保存在队列中，直到接收者取出它；</p>
+
+<p>（3）解耦，降低两个进程间的耦合度。 <br>
+只要消息格式不变，即使接收者的接口、位置、或者配置改变，也不会给发送者带来任何改变； <br>
+而且，消息发送者无需知道消息接收者是谁，使得系统设计更清晰； <br>
+相反的，例如，远程过程调用（RPC）或者服务间通过socket建立连接，如果对方接口改变了或者对方ip、端口改变了，那么另一方需要改写代码或者改写配置；</p>
+
+<p>（4）提供路由。 <br>
+发送者无需与接收者建立连接，双方通过消息队列保证消息能够从发送者路由到接收者，甚至对于本来相互网络不通的两个服务，也可以提供消息路由。</p>
+
+<p><strong>三、How?</strong></p>
+
+<p>1、创建新的消息队列或取得已有消息队列</p>
+
+<pre class="prettyprint"><code class=" hljs perl"><span class="hljs-keyword">int</span> <span class="hljs-keyword">msgget</span>(key_t key,<span class="hljs-keyword">int</span> msgflag)</code></pre>
+
+<p>参数： <br>
+–key : 可以认为是一个端口号，也可由函数 ftok 生成； <br>
+–msgflag : IPC_CREAT 如果不存在IPC则创建并返回，否则打开现有IPC资源；IPC_EXCL 单独使用没有意义，二者搭配 IPC_CREAT | IPC_EXCL 表示若不存在IPC则创建并返回，否则返回-1，这可保证所得的对象是新的。</p>
+
+<p>2、读写操作</p>
+
+<p>每个消息都有类似如下数据结构</p>
+
+<pre class="prettyprint"><code class=" hljs cs"><span class="hljs-keyword">struct</span> msgbuf{
+    <span class="hljs-keyword">long</span> mtype;   <span class="hljs-comment">// 消息类型，表示消息是谁发送的或者发给谁</span>
+    <span class="hljs-keyword">char</span> mtext[用户指定大小];   <span class="hljs-comment">//消息正文</span>
+};</code></pre>
+
+<p>（1）写操作函数原型</p>
+
+<pre class="prettyprint"><code class=" hljs perl"><span class="hljs-keyword">int</span>  <span class="hljs-keyword">msgsnd</span> ( <span class="hljs-keyword">int</span> msgid ,  struct msgbuf<span class="hljs-variable">*msgp</span> , <span class="hljs-keyword">int</span> msgsz, <span class="hljs-keyword">int</span> msgflg )</code></pre>
+
+<p>参数： <br>
+–msqid 是消息队列对象的标识符（由msgget()函数得到）； <br>
+–msgp 指向要发送的消息； <br>
+–msgsz 是要发送信息的长度（字节数）； <br>
+–msgflag 是控制函数行为的标志，可以取0，或忽略标志位。</p>
+
+<p>（2）读操作函数原型</p>
+
+<pre class="prettyprint"><code class=" hljs cs"><span class="hljs-keyword">int</span> msgrcv(<span class="hljs-keyword">int</span> msgid, <span class="hljs-keyword">struct</span> msgbuf *msgp, <span class="hljs-keyword">int</span> msgsz, <span class="hljs-keyword">long</span> msgtyp, <span class="hljs-keyword">int</span> msgflg)</code></pre>
+
+<p>参数： <br>
+–msqid 是消息队列对象的标识符（由msgget()函数得到）； <br>
+–msgp 指向要发送的消息； <br>
+–msgsz 是要发送信息的长度（字节数）； <br>
+–msgtyp 请求读取的消息类型； <br>
+–msgflag 是控制函数行为的标志，可以取0，或忽略标志位。</p>
+
+<p>3、设置消息队列属性</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs perl"><span class="hljs-keyword">int</span> <span class="hljs-keyword">msgctl</span>(<span class="hljs-keyword">int</span> msqid, <span class="hljs-keyword">int</span> cmd, struct msqid_ds <span class="hljs-variable">*buf</span>)</code></pre>
+
+<p>该系统调用对由msqid标识的消息队列执行cmd操作，共有三种cmd操作：IPC_STAT、IPC_SET 、IPC_RMID。</p>
+
+<p>–IPC_STAT：该命令用来获取消息队列信息，返回的信息存贮在buf指向的msqid结构中； <br>
+–IPC_SET：该命令用来设置消息队列的属性，要设置的属性存储在buf指向的msqid结构中；可设置属性包括：msg_perm.uid、msg_perm.gid、msg_perm.mode以及msg_qbytes，同时，也影响msg_ctime成员。 <br>
+–IPC_RMID：删除msqid标识的消息队列。</p>
+
+<p>4、结构</p>
+
+<p>消息队列就是一个消息的链表。每个消息队列都有一个队列头，用结构struct msg_queue来描述，存在于系统空间； <br>
+结构msqid_ds用来设置或返回消息队列的信息，存在于用户空间。</p>
+
+<p><img src="http://img.blog.csdn.net/20160706124423607" alt="这里写图片描述" title=""></p>
+
+<p>struct kern_ipc_perm结构</p>
+
+
+
+<pre class="prettyprint"><code class=" hljs objectivec"><span class="hljs-keyword">struct</span> kern_ipc_perm{  <span class="hljs-comment">//内核中记录消息队列的全局数据结构msg_ids能够访问到该结构；</span>
+    key_t  key;   
+    uid_t  uid;
+    gid_t  gid;
+    uid_t  cuid;
+    gid_t  cgid;
+    mode_t  mode;
+    <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> seq;
+}</code></pre>
+
+<p><strong>四、Example</strong></p>
+
+<p>简单模拟客户端服务器通信</p>
+
+<p>comm.h <br>
+<img src="http://img.blog.csdn.net/20160706130004379" alt="这里写图片描述" title=""></p>
+
+<p>comm.c <br>
+<img src="http://img.blog.csdn.net/20160706130029145" alt="这里写图片描述" title=""> <br>
+<img src="http://img.blog.csdn.net/20160706130046709" alt="这里写图片描述" title=""></p>
+
+<p>client.c <br>
+<img src="http://img.blog.csdn.net/20160706130105036" alt="这里写图片描述" title=""></p>
+
+<p>server.c <br>
+<img src="http://img.blog.csdn.net/20160706130127835" alt="这里写图片描述" title=""></p>
+
+<p>执行client和server <br>
+<img src="http://img.blog.csdn.net/20160706130556397" alt="这里写图片描述" title=""></p></div>
+        <script  type="text/javascript">
+            $(function () {
+                $('pre.prettyprint code').each(function () {
+                    var lines = $(this).text().split('\n').length;
+                    var $numbering = $('<ul/>').addClass('pre-numbering').hide();
+                    $(this).addClass('has-numbering').parent().append($numbering);
+                    for (i = 1; i <= lines; i++) {
+                        $numbering.append($('<li/>').text(i));
+                    };
+                    $numbering.fadeIn(1700);
+                });
+            });
+        </script>
+   
+</div>
+
+
+
+
+<!-- Baidu Button BEGIN -->
+
+
+
+
+<div class="bdsharebuttonbox tracking-ad" style="float: right;" data-mod="popu_172">
+<a href="#" class="bds_more" data-cmd="more" style="background-position:0 0 !important; background-image: url(http://bdimg.share.baidu.com/static/api/img/share/icons_0_16.png?v=d754dcc0.png) !important"></a>
+<a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"  style="background-position:0 -52px !important"></a>
+<a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"style="background-position:0 -104px !important"></a>
+<a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"style="background-position:0 -260px !important"></a>
+<a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"style="background-position:0 -208px !important"></a>
+<a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"style="background-position:0 -1612px !important" ></a>
+</div>
+<script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+<!-- Baidu Button END -->
+
+   <link rel="stylesheet" href="http://static.blog.csdn.net/css/blog_detail.css" />
+
+    
+<!--172.16.140.11-->
+
+<!-- Baidu Button BEGIN -->
+<script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=1536434" ></script>
+<script type="text/javascript" id="bdshell_js"></script>
+<script type="text/javascript">
+    document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000)
+</script>
+<!-- Baidu Button END -->
+
+ 
+
+        <div id="digg" ArticleId="51837963" >
+            <dl id="btnDigg" class="digg digg_enable"  onclick="btndigga();">
+               
+                 <dt>顶</dt>
+                <dd>1</dd>
+            </dl>
+           
+              
+            <dl id="btnBury" class="digg digg_enable"  onclick="btnburya();">
+              
+                  <dt>踩</dt>
+                <dd>0</dd>               
+            </dl>
+            
+        </div>
+     <div class="tracking-ad" data-mod="popu_222"><a href="javascript:void(0);" >&nbsp;</a>   </div>
+    <div class="tracking-ad" data-mod="popu_223"> <a href="javascript:void(0);" >&nbsp;</a></div>
+    <script type="text/javascript">
+                function btndigga() {
+                    $(".tracking-ad[data-mod='popu_222'] a").click();
+                }
+                function btnburya() {
+                    $(".tracking-ad[data-mod='popu_223'] a").click();
+                }
+            </script>
+
+   <ul class="article_next_prev">
+                <li class="prev_article"><span  onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian']);location.href='/x_y_r129/article/details/51732560';">上一篇</span><a href="/x_y_r129/article/details/51732560" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_shangyipian'])">fork()函数</a></li>
+    </ul>
+
+    <div style="clear:both; height:10px;"></div>
+
+
+        <div class="similar_article"  style="display:none">
+                <h4>我的同类文章</h4>
+                <div class="similar_c"style="margin:20px 0px 0px 0px">
+                    <div class="similar_c_t">
+                                <label class="similar_cur">
+                                    <span  style="cursor:pointer"  onclick="GetCategoryArticles('5773349','x_y_r129','foot','51837963');">linux<em>（6）</em></span>
+                                </label>
+                    </div>
+                   
+                    <div class="similar_wrap tracking-ad" data-mod="popu_141"  style="max-height:195px;">
+                        <a href="http://blog.csdn.net" style="display:none">http://blog.csdn.net</a>
+                        <ul class="similar_list fl">                          
+                        </ul>
+
+                        <ul class="similar_list fr">                           
+                        </ul>
+                    </div>
+                </div>
+            </div>    
+    <script  type="text/javascript">
+        $(function () {
+            GetCategoryArticles('5773349', 'x_y_r129','foot','51837963');
+        });
+    </script>
+      
+</div>
+<div id="suggest"></div>
+         <script  language="javascript" type='text/javascript'>     
+             $(function(){
+                 $.get("/x_y_r129/svc/GetSuggestContent/51837963",function(data){
+                     $("#suggest").html(data);
+                 });     
+             });             
+         </script>  
+
+
+<style>
+.blog-ass-articl dd {
+color: #369;
+width: 99%; /*修改行*/
+float: left;
+overflow: hidden;
+font: normal normal 12px/23px "SimSun";
+height: 23px;
+margin: 0;
+padding: 0 0 0 10px;
+margin-right: 30px;
+background: url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;
+}
+</style>
+
+ <link rel="stylesheet" href="http://static.blog.csdn.net/css/replace.css"/>
+<div id="relate" data-mod="popu_218"  class="tracking-ad">
+        <div class="relate_t">
+            <h3><span>参考知识库</span></h3>
+        </div>
+        <div class="relate_c">
+        </div>
+</div>
+ 
+
+<dl class="blog-ass-articl" id="res-relatived" > 
+    <div class="embody embody_b" id="libkeyparent"  style="display:none">
+            <span class="embody_t">更多资料请参考：</span>
+            <div class="embody_c" id="libkey"></div>
+    </div>
+
+
+     <dt><span>猜你在找</span></dt>    
+
+
+   
+
+
+    <div id="adCollege" style="width: 42%;float: left;"> 
+        <script src="http://csdnimg.cn/jobreco/job_reco.js" type="text/javascript"></script> 
+        <script type="text/javascript">
+            csdn.position.showEdu({
+                sourceType: "blog",
+                searchType: "detail",
+                searchKey: "51837963",
+                username: "x_y_r129",
+                recordcount: "5",
+                containerId: "adCollege" //容器DIV的id。 
+            });
+        </script> 
+    </div>  
+
+    
+     <div id="res"  data-mod="popu_36"  class="tracking-ad" style="width: 42%;float: left;margin-right: 30px;"></div>
+   
+</dl>
+
+
+<script type="text/javascript">
+    $(function () {
+        setTimeout(function () {
+            var searchtitletags = '进程间通信-消息队列' + ',' + $("#tags").html();
+            searchService({
+                index: 'blog',
+                query: searchtitletags,
+                from: 5,
+                size: 5,
+                appendTo: '#res',
+                url: 'recommend',
+                his: 2,
+                client: "blog_cf_enhance",
+                tmpl: '<dd style="background:url(http://static.blog.csdn.net/skin/default/images/blog-dot-red3.gif) no-repeat 0 10px;"><a href="#{ url }" title="#{ title }" strategy="#{ strategy }">#{ title }</a></dd>'
+            });
+        }, 500);
+    });    
+
+ </script>  
+
+    <div id="ad_cen">        
+<!-- 广告位开始 -->
+<ins data-revive-zoneid="71" data-revive-id="8c38e720de1c90a6f6ff52f3f89c4d57"></ins>
+<!-- 广告位结束 -->    </div>  
+
+<div class="comment_class">
+    <div id="comment_title" class="panel_head">
+        <span class="see_comment">查看评论</span><a name="comments"></a></div>
+    <div id="comment_list">
+    </div>
+    <div id="comment_bar">
+    </div>
+    <div id="comment_form">
+    </div>
+    <div class="announce">
+        * 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场<a name="reply"></a><a name="quote"></a></div>
+</div>
+
+<script type="text/javascript">
+    var fileName = '51837963';
+    var commentscount = 0;
+    var islock = false
+</script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/comment.js"></script>
+    <div id="ad_bot">
+    </div>
+<div id="report_dialog">
+</div>
+
+<div id="d-top"  style="bottom:60px;">
+        <a id="quick-reply" class="btn btn-top q-reply" title="快速回复" style="display:none;">
+            <img src="http://static.blog.csdn.net/images/blog-icon-reply.png" alt="快速回复">
+        </a>    
+
+    <a id="d-top-a" class="btn btn-top backtop"  style="display: none;" title="返回顶部" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_huidaodingbu'])" style="">         
+         <img src="http://static.blog.csdn.net/images/top.png" alt="TOP">
+    </a>
+</div>
+<script type="text/javascript">
+    $(function ()
+    {
+        $("#ad_frm_0").height("90px");
+        
+        setTimeout(function(){
+            $("#ad_frm_2").height("200px");
+        },1000);    
+    });
+  
+</script>
+<style type="text/css">
+    .tag_list
+    {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #D7CBC1;
+        color: #000000;
+        font-size: 12px;
+        line-height: 20px;
+        list-style: none outside none;
+        margin: 10px 2% 0 1%;
+        padding: 1px;
+    }
+    .tag_list h5
+    {
+        background: none repeat scroll 0 0 #E0DBD3;
+        color: #47381C;
+        font-size: 12px;
+        height: 24px;
+        line-height: 24px;
+        padding: 0 5px;
+        margin: 0;
+    }
+    .tag_list h5 a
+    {
+        color: #47381C;
+    }
+    .classify
+    {
+        margin: 10px 0;
+        padding: 4px 12px 8px;
+    }
+    .classify a
+    {
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+</style>
+
+
+<div class="tag_list" style="display:none"></div>
+  <script  language="javascript" type='text/javascript'>     
+      $(function(){
+              setTimeout(function(){
+                  $.get("/x_y_r129/svc/GetTagContent",function(data){
+                      $(".tag_list").html(data).show();
+                  });     
+              });
+          },500);                       
+ </script> 
+
+
+<div id="pop_win" style="display:none ;position: absolute; z-index: 10000; border: 1px solid rgb(220, 220, 220); top: 222.5px; left: 630px; opacity: 1; background: none 0px 0px repeat scroll rgb(255, 255, 255);">
+    
+</div>
+<div id="popup_mask"></div>
+<style>
+    #popup_mask
+    {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        left: 0px;
+        top: 0px;
+        opacity: 0.3;
+        filter: alpha(opacity=30);
+        display: none;
+    }
+
+</style>
+
+
+
+
+<script type="text/javascript">
+    $(function(){
+        setTimeout(function(){
+            $(".comment_body:contains('回复')").each(function(index,item){
+                var u=$(this).text().split('：')[0].toString().replace("回复","")
+                var thisComment=$(this);
+                if(u)
+                {
+                    $.getJSON("https://passport.csdn.net/get/nick?callback=?", {users: u}, function(a) {
+                        if(a!=null&&a.data!=null&&a.data.length>0)
+                        {
+                            nick=a.data[0].n; 
+                            if(u!=nick)
+                            {
+                                thisComment.text(thisComment.text().replace(u,nick));  
+                            }
+                        }       
+                    });  
+                }
+            });         
+
+        },200);  
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },5000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },10000);
+
+        setTimeout(function(){
+            $(".math").each(function(index,value){$(this).find("span").last().css("color","#fff"); })
+        },15000);
+        
+        setTimeout(function(){
+            $("a img[src='http://js.tongji.linezing.com/stats.gif']").parent().css({"position":"absolute","left":"50%"});
+        },300);
+    });
+
+    function loginbox(){
+        var $logpop=$("#pop_win");
+        $logpop.html('<iframe src="https://passport.csdn.net/account/loginbox?service=http://static.blog.csdn.net/callback.htm" frameborder="0" height="600" width="400" scrolling="no"></iframe>');
+
+        $('#popup_mask').css({
+            opacity: 0.5,
+            width: $( document ).width() + 'px',
+            height:  $( document ).height() + 'px'
+        });
+        $('#popup_mask').css("display","block");
+ 
+        $logpop.css( {
+            top: ($( window ).height() - $logpop.height())/ 2  + $( window 
+       ).scrollTop() + 'px',
+            left:($( window ).width() - $logpop.width())/ 2
+        } );
+ 
+        setTimeout( function () {
+            $logpop.show();
+            $logpop.css( {
+                opacity: 1
+            } );
+        }, 200 );
+ 
+        $('#popup_mask').unbind("click");
+        $('#popup_mask').bind("click", function(){
+            $('#popup_mask').hide();
+            var $clopop = $("#pop_win");
+            $("#common_ask_div_sc").css("display","none");
+            $clopop.css( {
+                opacity: 0
+            } );
+            setTimeout( function () {
+                $clopop.hide();
+            }, 350 );
+            return false;
+        });
+    }   
+
+</script>
+ <script language="javascript" type="text/javascript" src="http://ads.csdn.net/js/async_new.js"></script>      
+
+
+                        <div class="clear">
+                        </div>
+                    </div>                   
+                
+            </div>
+                   
+           <div id="side">
+    <div class="side">
+<div id="panel_Profile" class="panel">
+<ul class="panel_head"><span>个人资料</span></ul>
+<ul class="panel_body profile">
+<div id="blog_userface">
+    <a href="http://my.csdn.net/x_y_r129" target="_blank">
+    <img src="http://avatar.csdn.net/B/2/A/1_x_y_r129.jpg" title="访问我的空间" style="max-width:90%"/>
+    </a>
+    <br />
+    <span><a href="http://my.csdn.net/x_y_r129" class="user_name" target="_blank">x_y_r129</a></span>
+</div>
+<div class="interact">
+
+    <a href="javascript:void(0);" class="attent" id="span_add_follow" title="[加关注]"></a>
+
+ <a href="javascript:void(0);" class="letter"  title="[发私信]" onclick="window.open('http://msg.csdn.net/letters/model?receiver=x_y_r129','_blank','height=350,width=700');_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_sixin'])"></a>  
+</div>
+<div id="blog_medal">
+                <div id="bms_box">
+                                            <a  target="_blank">
+                                                    <img src="http://c.csdnimg.cn/jifen/images/xunzhang/xunzhang/chizhiyiheng.png" onmouseover="m_over_m(this,4)" onmouseout="m_out_m()" alt="1" >
+                                            </a>
+               </div>
+</div>
+<ul id="blog_rank">
+    <li>访问：<span>1534次</span></li>
+    <li>积分：<span>351</span> </li>    
+    <li >等级： <span style="position:relative;display:inline-block;z-index:1" >
+            <img src="http://c.csdnimg.cn/jifen/images/xunzhang/jianzhang/blog2.png" alt="" style="vertical-align: middle;" id="leveImg">
+            <div id="smallTittle" style=" position: absolute;  left: -24px;  top: 25px;  text-align: center;  width: 101px;  height: 32px;  background-color: #fff;  line-height: 32px;  border: 2px #DDDDDD solid;  box-shadow: 0px 2px 2px rgba (0,0,0,0.1);  display: none;   z-index: 999;">
+            <div style="left: 42%;  top: -8px;  position: absolute;  width: 0;  height: 0;  border-left: 10px solid transparent;  border-right: 10px solid transparent;  border-bottom: 8px solid #EAEAEA;"></div>
+            积分：351 </div>
+        </span>  </li>
+    <li>排名：<span>千里之外</span></li>
+</ul>
+<ul id="blog_statistics">
+    <li>原创：<span>34篇</span></li>
+    <li>转载：<span>0篇</span></li>
+    <li>译文：<span>0篇</span></li>
+    <li>评论：<span>0条</span></li>
+</ul>
+</ul>
+</div>
+
+
+<div class="panel" id="panel_Search">
+    <ul class="panel_head"><span>文章搜索</span></ul>
+    <ul class="panel_body">
+        <form id="frmSearch" action="http://so.csdn.net/search" class="form_search" target="_blank">
+        <span><input id="inputSearch" type="text" class="blogsearch" title="请输入关键字" /></span>
+        <input id="btnSubmit" type="button" value="搜索" title="search in blog" />
+        <input type="hidden" name="q" id="inputQ" />
+        <input type="hidden" name="t" value="blog" />
+        <a id="btnSearchBlog" target="_blank"></a>
+        </form>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnSubmit").click(function () {           
+            search();
+        });
+
+        $("#frmSearch").submit(function () {
+            search();
+            return false;
+        });
+
+        function search()
+        {
+            var url = "http://so.csdn.net/so/search/s.do?q=" + encodeURIComponent($("#inputSearch").val()) + "&u=" + username + "&t=blog";
+            window.location.href = url;
+        }   
+    });
+</script><div id="panel_Category" class="panel">
+<ul class="panel_head"><span>文章分类</span></ul>
+<ul class="panel_body">    
+                 <li>
+                    <a href="/x_y_r129/article/category/5751855" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">C语言编程</a><span>(9)</span>
+                </li>
+                 <li>
+                    <a href="/x_y_r129/article/category/5768135" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">学习笔记</a><span>(9)</span>
+                </li>
+                 <li>
+                    <a href="/x_y_r129/article/category/5773349" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">linux</a><span>(7)</span>
+                </li>
+                 <li>
+                    <a href="/x_y_r129/article/category/6126852" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">算法与数据结构</a><span>(8)</span>
+                </li>
+                 <li>
+                    <a href="/x_y_r129/article/category/6164985" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">levelDB笔记</a><span>(2)</span>
+                </li>
+                 <li>
+                    <a href="/x_y_r129/article/category/6164990" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">注释转换</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/x_y_r129/article/category/6167312" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">BigData</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/x_y_r129/article/category/6261434" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">STL</a><span>(1)</span>
+                </li>
+                 <li>
+                    <a href="/x_y_r129/article/category/6273002" onclick="_gaq.push(['_trackEvent','function', 'onclick', 'blog_articles_wenzhangfenlei']); ">操作系统</a><span>(1)</span>
+                </li>
+</ul>
+</div><div id="panel_Archive" class="panel">
+<ul class="panel_head"><span>文章存档</span></ul>
+<ul class="panel_body">
+<div id="archive_list">
+<!--归档统计-->
+<li><a href="/x_y_r129/article/month/2016/07">2016年07月</a><span>(1)</span></li><li><a href="/x_y_r129/article/month/2016/06">2016年06月</a><span>(5)</span></li><li><a href="/x_y_r129/article/month/2016/05">2016年05月</a><span>(4)</span></li><li><a href="/x_y_r129/article/month/2016/04">2016年04月</a><span>(7)</span></li><li><a href="/x_y_r129/article/month/2016/03">2016年03月</a><span>(4)</span></li><li><a href="/x_y_r129/article/month/2015/11">2015年11月</a><span>(6)</span></li><li><a href="/x_y_r129/article/month/2015/08">2015年08月</a><span>(7)</span></li>
+</div>
+</ul>
+</div>
+<div id="hotarticls" class="panel">
+<ul class="panel_head">
+    <span>       
+阅读排行    </span>
+</ul>
+
+<ul class="panel_body itemlist">
+<li>
+<a href="/x_y_r129/article/details/51549012" title="Linux的task_struct">Linux的task_struct</a><span>(141)</span>
+</li>
+<li>
+<a href="/x_y_r129/article/details/47806389" title="c语言棋盘游戏">c语言棋盘游戏</a><span>(89)</span>
+</li>
+<li>
+<a href="/x_y_r129/article/details/48050319" title="宏与函数的不同">宏与函数的不同</a><span>(74)</span>
+</li>
+<li>
+<a href="/x_y_r129/article/details/48036565" title="从键盘接收字符并输出对应大写或小写">从键盘接收字符并输出对应大写或小写</a><span>(71)</span>
+</li>
+<li>
+<a href="/x_y_r129/article/details/48012609" title="文章标题">文章标题</a><span>(70)</span>
+</li>
+<li>
+<a href="/x_y_r129/article/details/50854931" title="实现一个栈，要求Push（入栈），Pop（出栈），Min（返回最小值的操作）的时间复杂度为O（1）">实现一个栈，要求Push（入栈），Pop（出栈），Min（返回最小值的操作）的时间复杂度为O（1）</a><span>(65)</span>
+</li>
+<li>
+<a href="/x_y_r129/article/details/49667269" title="找出数组中只出现一次的两个数字">找出数组中只出现一次的两个数字</a><span>(60)</span>
+</li>
+<li>
+<a href="/x_y_r129/article/details/48050363" title="实现strstr函数">实现strstr函数</a><span>(59)</span>
+</li>
+<li>
+<a href="/x_y_r129/article/details/50867326" title="两个队列实现一个栈，要求实现Push以及Pop等方法">两个队列实现一个栈，要求实现Push以及Pop等方法</a><span>(58)</span>
+</li>
+<li>
+<a href="/x_y_r129/article/details/50100013" title="单链表基本操作">单链表基本操作</a><span>(57)</span>
+</li>
+</ul>
+</div>
+<div id="hotarticls2" class="panel">
+<ul class="panel_head"><span>评论排行</span></ul>
+<ul class="panel_body itemlist">
+<li>
+<a href="/x_y_r129/article/details/51837963" title="进程间通信-消息队列">进程间通信-消息队列</a><span>(0)</span>
+</li>
+<li>
+<a href="/x_y_r129/article/details/49667103" title="进制转换">进制转换</a><span>(0)</span>
+</li>
+<li>
+<a href="/x_y_r129/article/details/49666987" title="猜拳游戏">猜拳游戏</a><span>(0)</span>
+</li>
+<li>
+<a href="/x_y_r129/article/details/49666535" title="旋转字符串">旋转字符串</a><span>(0)</span>
+</li>
+<li>
+<a href="/x_y_r129/article/details/48050363" title="实现strstr函数">实现strstr函数</a><span>(0)</span>
+</li>
+<li>
+<a href="/x_y_r129/article/details/48050319" title="宏与函数的不同">宏与函数的不同</a><span>(0)</span>
+</li>
+<li>
+<a href="/x_y_r129/article/details/48036713" title="实现函数itob">实现函数itob</a><span>(0)</span>
+</li>
+<li>
+<a href="/x_y_r129/article/details/48036565" title="从键盘接收字符并输出对应大写或小写">从键盘接收字符并输出对应大写或小写</a><span>(0)</span>
+</li>
+<li>
+<a href="/x_y_r129/article/details/48036441" title="打印杨辉三角">打印杨辉三角</a><span>(0)</span>
+</li>
+<li>
+<a href="/x_y_r129/article/details/48012609" title="文章标题">文章标题</a><span>(0)</span>
+</li>
+</ul>
+</div>
+<div id="homepageArticles" class="panel tracking-ad" data-mod="popu_4">
+<ul class="panel_head"><span>推荐文章</span></ul>
+<ul class="panel_body" id="ad_commend">
+<ul>
+<li><a href="http://blog.csdn.net/mackkill/article/details/51752687" target="_blank">*Android RocooFix 热修复框架</a></li>
+<li><a href="http://blog.csdn.net/xiehuimx/article/details/51731649" 
+target="_blank">*笑谈Android图表------MPAndroidChart</a></li>
+<li><a href="http://blog.csdn.net/hiyun9/article/details/51602428" 
+target="_blank">*Nginx正反向代理、负载均衡等功能实现配置</a></li>
+<li><a href="http://blog.csdn.net/qianweifeng123/article/details/51555998" target="_blank">* 浅析ZeroMQ工作原理及其特点</a></li>
+<li><a 
+
+href="http://blog.csdn.net/strive_for_tomorrow/article/details/51762486"target="_blank">*Android开源框架Universal-Image-Loader基本介绍及使用</a></li>
+<li><a href="http://blog.csdn.net/mickjoust/article/details/51646658" 
+target="_blank">*Spring Boot 实践折腾记（三）：三板斧，Spring Boot下使用Mybatis</a></li>
+
+
+</ul></ul>
+</div>
+
+
+    </div>
+    <div class="clear">
+    </div>
+ </div>   
+            <div class="clear">
+            </div>
+        </div>
+
+        
+
+<script type="text/javascript" src="http://c.csdnimg.cn/rabbit/cnick/cnick.js"></script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/newblog.min.js"></script>
+
+
+<script type="text/javascript" src="http://medal.blog.csdn.net/showblogmedal.ashx?blogid=5246633"></script>
+<script type="text/javascript" src="http://static.blog.csdn.net/scripts/JavaScript1.js"></script>
+
+<script type="text/javascript">document.write("<img src=http://counter.csdn.net/pv.aspx?id=24 border=0 width=0 height=0>");</script>
+<script type="text/javascript" src="http://www.csdn.net/ui/scripts/Csdn/counter.js"></script>
+<script type="text/javascript" src="http://ad.csdn.net/scripts/ad-blog.js"></script>
+<script type="text/javascript">
+    $(function () {
+        function __get_code_toolbar(snippet_id) {
+            return $("<span class='tracking-ad' data-mod='popu_167'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "' target='_blank' title='在CODE上查看代码片'  style='text-indent:0;'><img src='https://code.csdn.net/assets/CODE_ico.png' width=12 height=12 alt='在CODE上查看代码片' style='position:relative;top:1px;left:2px;'/></a></span>"
+                    + "<span class='tracking-ad' data-mod='popu_170'><a href='https://code.csdn.net/snippets/"
+                    + snippet_id
+                    + "/fork' target='_blank' title='派生到我的代码片' style='text-indent:0;'><img src='https://code.csdn.net/assets/ico_fork.svg' width=12 height=12 alt='派生到我的代码片' style='position:relative;top:2px;left:2px;'/></a></span>");
+        }
+        
+        $("[code_snippet_id]").each(function () {
+            __s_id = $(this).attr("code_snippet_id");
+            if (__s_id != null && __s_id != "" && __s_id != 0 && parseInt(__s_id) > 70020) {
+                __code_tool = __get_code_toolbar(__s_id);
+                $(this).prev().find(".tools").append(__code_tool);
+            }
+        });
+
+        $(".bar").show();
+    });
+</script>
+
+
+
+
+    </div>
+      <!--new top-->
+    
+    <script id="csdn-toolbar-id" btnId="header_notice_num" wrapId="note1" count="5" subCount="5" type="text/javascript" src="http://c.csdnimg.cn/public/common/toolbar/js/toolbar.js"></script>     <!--new top-->
+   
+    <link href="http://c.csdnimg.cn/comm_ask/css/ask_float_block.css" type="text/css" rel="stylesheet" />
+    <script language='JavaScript' type='text/javascript' src='http://c.csdnimg.cn/comm_ask/js/libs/wmd.js'></script>
+    <script language='JavaScript' type='text/javascript' src='http://c.csdnimg.cn/comm_ask/js/libs/showdown.js'></script>
+    <script language='JavaScript' type='text/javascript' src='http://c.csdnimg.cn/comm_ask/js/libs/prettify.js'></script>
+    <script language='JavaScript' type='text/javascript' src='http://c.csdnimg.cn/comm_ask/js/apps/ask_float_block.js'></script>
+   
+
+  <div id="a52b5334d" style="width: 1px; height: 1px; display: none;">
+                    <script id="adJs52b5334"></script>
+                    <script>document.getElementById("adJs52b5334").src = "http://ads.csdn.net/js/opt/52b5334.js?t=" + Math.random();</script>
+   </div>
+
+    <link rel="stylesheet" href="http://static.blog.csdn.net/css/blog_code.css" />
+    <script type="text/javascript" src="http://static.blog.csdn.net/scripts/saveToCode.js"></script>
+      <script type="text/javascript" src="//csdnimg.cn/rabbit/tracking-ad/main.js?75eacd8"></script>
+</body>
+</html>   
+ 
